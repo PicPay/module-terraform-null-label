@@ -28,9 +28,29 @@ output "name" {
   description = "Normalized name"
 }
 
+output "terraform" {
+  value       = local.enabled ? local.terraform : ""
+  description = "True if created with terraform"
+}
+
 output "squad" {
   value       = local.enabled ? local.squad : ""
   description = "Normalized squad"
+}
+
+output "bu" {
+  value       = local.enabled ? local.bu : ""
+  description = "Normalized BU"
+}
+
+output "costcenter" {
+  value       = local.enabled ? local.costcenter : ""
+  description = "Normalized cost center"
+}
+
+output "tribe" {
+  value       = local.enabled ? local.tribe : ""
+  description = "Normalized tribe"
 }
 
 output "delimiter" {

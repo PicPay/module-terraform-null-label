@@ -45,25 +45,49 @@ variable "enabled" {
 variable "application" {
   type        = string
   default     = null
-  description = "application, which could be your organization name or abbreviation, e.g. 'eg' or 'cp'"
+  description = "application name"
 }
 
 variable "environment" {
   type        = string
   default     = null
-  description = "Environment, e.g. 'uw2', 'us-west-2', OR 'prod', 'staging', 'dev', 'UAT'"
+  description = "'Environment, e.g. 'lab', 'dev', 'hom' OR 'prod''"
 }
 
 variable "squad" {
   type        = string
   default     = null
-  description = "squad, e.g. 'prod', 'staging', 'dev', OR 'source', 'build', 'test', 'deploy', 'release'"
+  description = "squad name, see at https://picpay.atlassian.net/wiki/spaces/U/pages/681738929/Estrutura+de+tribos+-+PicPay"
+}
+
+variable "terraform" {
+  type        = string
+  default     = "true"
+  description = "Set to true because it should be"
 }
 
 variable "name" {
   type        = string
   default     = null
   description = "Solution name, e.g. 'app' or 'jenkins'"
+}
+
+variable "bu" {
+  type        = string
+  default     = "PicPay"
+  description = "Set to PicPay since is the only that we have"
+}
+
+variable "costcenter" {
+  type        = string
+  default     = null
+  description = "Set the cost center, see at https://picpay.atlassian.net/wiki/spaces/IC/pages/958530159/PicPay+-+Centro+de+Custos"
+}
+
+variable "tribe" {
+  type        = string
+  default     = null
+  description = "Set the tribe, see at https://picpay.atlassian.net/wiki/spaces/U/pages/681738929/Estrutura+de+tribos+-+PicPay"
 }
 
 variable "delimiter" {

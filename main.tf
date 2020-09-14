@@ -1,7 +1,7 @@
 locals {
 
   defaults = {
-    label_order         = ["application", "environment", "squad", "name", "attributes"]
+    label_order         = ["environment", "name", "squad", "attributes"]
     regex_replace_chars = "/[^-a-zA-Z0-9]/"
     delimiter           = "-"
     replacement         = ""
@@ -10,6 +10,8 @@ locals {
     attributes      = []
     id_length_limit = 0
     id_hash_length  = 5
+    terraform       = "true"
+    bu              = "PicPay"
   }
 
   # So far, we have decided not to allow overriding replacement, sentinel, or id_hash_length
@@ -26,6 +28,9 @@ locals {
     environment = var.environment == null ? var.context.environment : var.environment
     squad       = var.squad == null ? var.context.squad : var.squad
     name        = var.name == null ? var.context.name : var.name
+    bu          = var.bu == null ? var.context.bu : var.bu
+    costcenter  = var.costcenter == null ? var.context.costcenter : var.costcenter
+    tribe       = var.tribe == null ? var.context.tribe : var.tribe
     delimiter   = var.delimiter == null ? var.context.delimiter : var.delimiter
     attributes  = compact(distinct(concat(var.attributes, var.context.attributes)))
     tags        = merge(var.context.tags, var.tags)
@@ -41,9 +46,13 @@ locals {
   regex_replace_chars = coalesce(local.input.regex_replace_chars, local.defaults.regex_replace_chars)
 
   name            = lower(replace(coalesce(local.input.name, local.sentinel), local.regex_replace_chars, local.replacement))
-  application       = lower(replace(coalesce(local.input.application, local.sentinel), local.regex_replace_chars, local.replacement))
+  application     = lower(replace(coalesce(local.input.application, local.sentinel), local.regex_replace_chars, local.replacement))
   environment     = lower(replace(coalesce(local.input.environment, local.sentinel), local.regex_replace_chars, local.replacement))
   squad           = lower(replace(coalesce(local.input.squad, local.sentinel), local.regex_replace_chars, local.replacement))
+  terraform       = local.defaults.terraform
+  bu              = lower(replace(coalesce(local.input.bu, local.sentinel), local.regex_replace_chars, local.replacement))
+  costcenter      = lower(replace(coalesce(local.input.costcenter, local.sentinel), local.regex_replace_chars, local.replacement))
+  tribe           = lower(replace(coalesce(local.input.tribe, local.sentinel), local.regex_replace_chars, local.replacement))
   delimiter       = local.input.delimiter == null ? local.defaults.delimiter : local.input.delimiter
   label_order     = local.input.label_order == null ? local.defaults.label_order : coalescelist(local.input.label_order, local.defaults.label_order)
   id_length_limit = local.input.id_length_limit == null ? local.defaults.id_length_limit : local.input.id_length_limit
@@ -67,18 +76,21 @@ locals {
   tags_context = {
     # For AWS we need `Name` to be disambiguated since it has a special meaning
     name        = local.id
-    application   = local.application
+    application = local.application
     environment = local.environment
     squad       = local.squad
+    terraform   = local.terraform
+    bu          = local.bu
+    costcenter  = local.costcenter
+    tribe       = local.tribe
     attributes  = local.id_context.attributes
   }
 
   generated_tags = { for l in keys(local.tags_context) : title(l) => local.tags_context[l] if length(local.tags_context[l]) > 0 }
 
   id_context = {
-    name        = local.name
-    application   = local.application
     environment = local.environment
+    name        = local.name    
     squad       = local.squad
     attributes  = lower(replace(join(local.delimiter, local.attributes), local.regex_replace_chars, local.replacement))
   }
@@ -102,9 +114,13 @@ locals {
   output_context = {
     enabled             = local.enabled
     name                = local.name
-    application           = local.application
+    application         = local.application
     environment         = local.environment
     squad               = local.squad
+    terraform           = local.terraform
+    bu                  = local.bu
+    costcenter          = local.costcenter
+    tribe               = local.tribe
     delimiter           = local.delimiter
     attributes          = local.attributes
     tags                = local.tags
