@@ -13,9 +13,9 @@ output "enabled" {
   description = "True if module is enabled, false otherwise"
 }
 
-output "namespace" {
-  value       = local.enabled ? local.namespace : ""
-  description = "Normalized namespace"
+output "application" {
+  value       = local.enabled ? local.application : ""
+  description = "Normalized application"
 }
 
 output "environment" {
@@ -28,14 +28,14 @@ output "name" {
   description = "Normalized name"
 }
 
-output "stage" {
-  value       = local.enabled ? local.stage : ""
-  description = "Normalized stage"
+output "squad" {
+  value       = local.enabled ? local.squad : ""
+  description = "Normalized squad"
 }
 
 output "delimiter" {
   value       = local.enabled ? local.delimiter : ""
-  description = "Delimiter between `namespace`, `environment`, `stage`, `name` and `attributes`"
+  description = "Delimiter between `bu`, `environment`, `squad`, `name` and `attributes`"
 }
 
 output "attributes" {
