@@ -19,7 +19,6 @@ Releases of this module from `0.12.0` onward support `HCL2` and only work with T
 
 
 ---
-[Terraform Open Source Modules](https://docs.cloudposse.com/images/terraform-open-source-modules.svg)
 
 ## Usage
 **IMPORTANT:** The `master` branch is used in `source` just as an example. In your code, do not pin to `master` because there may be breaking changes between releases.
