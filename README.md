@@ -1,6 +1,4 @@
-# terraform-null-label [![Latest Release](https://img.shields.io/github/release/cloudposse/terraform-null-label.svg)](https://github.com/PicPay/module-terraform-null-label/releases/latest)
-
-[![Cloud Posse][logo]](https://cpco.io/homepage)
+# terraform-null-label [Latest Release](https://github.com/PicPay/module-terraform-null-label/releases/latest)
 
 Terraform module designed to generate consistent names and tags for resources. Use `terraform-null-label` to implement a strict naming convention.
 
@@ -21,7 +19,6 @@ Releases of this module from `0.12.0` onward support `HCL2` and only work with T
 
 
 ---
-[![Terraform Open Source Modules](https://docs.cloudposse.com/images/terraform-open-source-modules.svg)][terraform_modules]
 
 ## Usage
 **IMPORTANT:** The `master` branch is used in `source` just as an example. In your code, do not pin to `master` because there may be breaking changes between releases.
