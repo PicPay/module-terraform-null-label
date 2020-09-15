@@ -1,6 +1,4 @@
-# terraform-null-label [![Latest Release](https://img.shields.io/github/release/cloudposse/terraform-null-label.svg)](https://github.com/PicPay/module-terraform-null-label/releases/latest)
-
-[![Cloud Posse][logo]](https://cpco.io/homepage)
+# terraform-null-label [![Latest Release](https://img.shields.io/github/release/PicPay/terraform-null-label.svg)](https://github.com/PicPay/module-terraform-null-label/releases/latest)
 
 Terraform module designed to generate consistent names and tags for resources. Use `terraform-null-label` to implement a strict naming convention.
 
